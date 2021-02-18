@@ -25,7 +25,7 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # handle webhook body
+    # handle webhook body tt
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
