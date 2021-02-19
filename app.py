@@ -38,9 +38,16 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    response = '我還聽不懂這句話'
+
+    if msg in ['hi','HI','Hi','嗨','你好']:
+        response = '你好啊,87'
+    elif msg in ['天竺鼠車車']:
+        response = '天竺鼠車車好看哦 快來看: https://www.youtube.com/watch?v=_6TtTRrno3E'
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='登登讚啦!!'))
+        TextSendMessage(text=response))
 
 
 if __name__ == "__main__":
