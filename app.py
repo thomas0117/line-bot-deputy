@@ -49,7 +49,7 @@ def handle_message(event):
         response = '天竺鼠車車好看哦 快來看: https://www.youtube.com/watch?v=_6TtTRrno3E'
     if msg in ['!建立投票']:
         add_votes(msg)
-        response = votes
+        response = ' '.join(votes)
         # vote = msg.find('!建立投票');
         # response = '測試看看'
 
