@@ -44,6 +44,8 @@ def handle_message(event):
         response = '你好啊,87'
     elif msg in ['天竺鼠車車']:
         response = '天竺鼠車車好看哦 快來看: https://www.youtube.com/watch?v=_6TtTRrno3E'
+    if msg in ['!投票']:
+        response = '測試看看'
 
     line_bot_api.reply_message(
         event.reply_token,
