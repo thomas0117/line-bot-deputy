@@ -1,3 +1,4 @@
+import random
 from flask import Flask, request, abort
 
 from linebot import (
@@ -39,7 +40,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global votes
+    global user_list, lottery_list
     msg = event.message.text
     command = msg.split(' ')[0]
     user_id = event.source.user_id
@@ -114,9 +115,9 @@ def join_lottery(str, user_id):
     global lottery_list, user_list
     _, lottery_name, user_name, contribution = str.split(' ')
     if lottery_name not in lottery_list:
-        return 1, ''
+        return 1, user_name
     elif user_name in user_list:
-        return 2, ''
+        return 2, user_name
     else:
         user_list.append(user_name)
         return 0, user_name
@@ -140,7 +141,7 @@ def delete_lottery(str):
 # 1: 沒有該抽獎人
 def delete_lottery_user(str):
     global user_list
-    _, lottery_list, user_name = str.split(' ')
+    _, lottery_name, user_name = str.split(' ')
     if user_name in user_list:
         user_list.remove(user_name)
         return 0
@@ -152,7 +153,7 @@ def delete_lottery_user(str):
 # 中獎人list
 def execute_lottery(str):
     global user_list
-    _, lottery_list, number = str.split(' ')
+    _, lottery_name, number = str.split(' ')
     winners = random.sample(user_list, int(number))
     return winners
 
