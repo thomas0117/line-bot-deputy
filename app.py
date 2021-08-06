@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-
+import psycopg2
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -14,6 +14,8 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('9yposcY6LT8+69GqLz7+9PoCcvqW/PalD/z8qGdwqu3PqwN7/7FIOmD1WNP0rdR4PRvuUUrhD7ZG+ocPL4KXNl+qRtZeJqZFYeYzFhpq+hKPPk/YR55ewU4a5ssZpTPJVy2TLl3pLt7e6mGddfZXqAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('abea3b590abf8bb6fa7934a6682a7a7e')
+conn = psycopg2.connect('postgres://sgjcugfxsgxehj:5cc68a8c4172a50e9799e8abfa90bbdea1032c1ba9c87dae9e94fb97f5975dfe@ec2-35-174-118-71.compute-1.amazonaws.com:5432/d34asi0v43fe4u', sslmode='require')
+cursor = conn.cursor()
 
 lottery_list = []
 user_list = []
