@@ -45,6 +45,7 @@ def handle_message(event):
     user_id = event.source.user_id
     response = '我還聽不懂這句話'
 
+<<<<<<< HEAD
     if command == '!建立抽獎':
         result = create_lottery(msg)
         if result == 0:
@@ -90,6 +91,20 @@ def handle_message(event):
         response = '以下為中獎人:\n'
         for user_name in result:
             response += user_name + '\n'
+=======
+    if msg in ['hi','HI','Hi','嗨','你好']:
+        response = '你好啊,87'
+    elif msg in ['天竺鼠車車']:
+        response = '天竺鼠車車好看哦 快來看: https://www.youtube.com/watch?v=_6TtTRrno3E'
+    elif msg in ['ID']:
+        response = event.source.userId
+    if msg in ['!建立投票']:
+        add_votes(msg)
+        response = ' '.join(votes)
+        # vote = msg.find('!建立投票');
+        # response = '測試看看'
+
+>>>>>>> 017a00bdb1806f72e2e42829dc9b5218ed85d78c
 
     line_bot_api.reply_message(
         event.reply_token,
