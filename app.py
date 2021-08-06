@@ -45,7 +45,7 @@ def handle_message(event):
     user_id = event.source.user_id
     response = '我還聽不懂這句話'
 
-<<<<<<< HEAD
+
     if command == '!建立抽獎':
         result = create_lottery(msg)
         if result == 0:
