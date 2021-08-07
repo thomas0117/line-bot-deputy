@@ -49,8 +49,9 @@ def handle_message(event):
     global user_list, lottery_list
     msg = event.message.text
     command = msg.split(' ')[0]
-    response = '我還聽不懂這句話'
+    response = '我還聽不懂這句話' 
     try:
+                    
         if command == '!建立抽獎':
             result = create_lottery(msg)
             if result == 0:
@@ -114,11 +115,12 @@ def handle_message(event):
             + '7.!抽獎人列表 [獎品名稱]'
     except:
         response = '指令錯了，麻煩輸入完整參數喔!'
-        
 
-    line_bot_api.reply_message(
+    if command[0] == '!':
+        line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=response))
+    
 
 
 # return value
