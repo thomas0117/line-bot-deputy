@@ -247,6 +247,7 @@ def execute_lottery(str):
             winner = random.sample(candidate, 1)
             if winner[0] not in winners:
                 winners.append(winner[0])
+                candidate = list(filter((winner[0]).__ne__, candidate))
     return winners
 
 # return value
