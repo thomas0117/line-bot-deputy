@@ -3,6 +3,7 @@ import random
 from warnings import catch_warnings
 import psycopg2
 from flask import Flask, request, abort
+import json
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -11,10 +12,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
-
-
 
 app = Flask(__name__)
 
@@ -22,8 +21,9 @@ line_bot_api = LineBotApi('9yposcY6LT8+69GqLz7+9PoCcvqW/PalD/z8qGdwqu3PqwN7/7FIO
 handler = WebhookHandler('abea3b590abf8bb6fa7934a6682a7a7e')
 sql_key = 'postgres://sgjcugfxsgxehj:5cc68a8c4172a50e9799e8abfa90bbdea1032c1ba9c87dae9e94fb97f5975dfe@ec2-35-174-118-71.compute-1.amazonaws.com:5432/d34asi0v43fe4u'
 
-lottery_list = []
-user_list = []
+with open('fortune.json', 'r') as file:
+    fortune_data = json.load(file)
+    fortune_data = json.loads(fortune_data)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -46,12 +46,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global user_list, lottery_list
+    message = []
     msg = event.message.text
     command = msg.split(' ')[0]
     response = '我還聽不懂這句話' 
-    try:
-                    
+    try:    
         if command == '!建立抽獎':
             result = create_lottery(msg)
             if result == 0:
@@ -113,13 +112,26 @@ def handle_message(event):
             + '5.!刪除抽獎人 + [獎品名稱] + [抽獎人名字]' + '\n'\
             + '6.!抽獎列表' + '\n'\
             + '7.!抽獎人列表 [獎品名稱]'
+
+        if command == '!求籤':
+            result = random.sample(fortune_data, 1)
+            response = result[0]['title'] + '\n\n' + result[0]['content']
+            img_src = result[0]['img_src']
+            message.append(ImageSendMessage(
+                    original_content_url=img_src,
+                    preview_image_url=img_src
+                ))
     except:
         response = '指令錯了，麻煩輸入完整參數喔!'
+
+    message.append(TextSendMessage(text=response))
 
     if command[0] == '!':
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=response))
+        message
+        )
+        
     
 
 
@@ -217,7 +229,6 @@ def delete_lottery_user(str):
 # return value
 # 中獎人list
 def execute_lottery(str):
-    global user_list
     _, lottery_name, number = str.split(' ')
     number = int(number)
     user_list = select_lottery_user(lottery_name, '')

@@ -17,3 +17,4 @@ urllib3==1.26.3
 gunicorn
 flask
 psycopg2
+json
