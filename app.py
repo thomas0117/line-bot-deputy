@@ -116,10 +116,10 @@ def handle_message(event):
     except:
         response = '指令錯了，麻煩輸入完整參數喔!'
 
-    # if command[0] == '!':
-    line_bot_api.reply_message(
-    event.reply_token,
-    TextSendMessage(text=response))
+    if command[0] == '!':
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=response))
     
 
 
