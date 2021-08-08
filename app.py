@@ -112,16 +112,16 @@ def handle_message(event):
             + '5.!刪除抽獎人 + [獎品名稱] + [抽獎人名字]' + '\n'\
             + '6.!抽獎列表' + '\n'\
             + '7.!抽獎人列表 [獎品名稱]' + '\n'\
-            + '8.!求籤'
+            # + '8.!求籤'
 
-        if command == '!求籤':
-            result = random.sample(fortune_data, 1)
-            response = result[0]['title'] + '\n\n' + result[0]['content']
-            img_src = result[0]['img_src']
-            message.append(ImageSendMessage(
-                    original_content_url=img_src,
-                    preview_image_url=img_src
-                ))
+        # if command == '!求籤':
+        #     result = random.sample(fortune_data, 1)
+        #     response = result[0]['title'] + '\n\n' + result[0]['content']
+        #     img_src = result[0]['img_src']
+        #     message.append(ImageSendMessage(
+        #             original_content_url=img_src,
+        #             preview_image_url=img_src
+        #         ))
     except:
         response = '指令錯了，麻煩輸入完整參數喔!'
 
