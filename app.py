@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('XJPszI2aN+tp8n1P/grVOJG0tY0mWjDJhbAv+YRy0rXJQXmkf+y618CV2JcMODkQOC1ui6srhvv5k8tgSf5XOLfbbRFoQfs2zJX895peTHa00V/Ho/dpPA5U91vP7FF+LGDKPOQEMVxKBiMaUdOYUwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a1866f830a1523298b975cef98c6eba1')
-sql_key = 'postgres://sgjcugfxsgxehj:5cc68a8c4172a50e9799e8abfa90bbdea1032c1ba9c87dae9e94fb97f5975dfe@ec2-35-174-118-71.compute-1.amazonaws.com:5432/d34asi0v43fe4u'
+sql_key = 'postgres://nxdzazwuksueek:12cfb8639158f0b99775912b528bd7212871c4b69c8fa3407b020e86c18ab5fb@ec2-3-209-38-221.compute-1.amazonaws.com:5432/d4q3a33v2hjd0u'
 
 with open('fortune.json', 'r') as file:
     fortune_data = json.load(file)
