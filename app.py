@@ -41,7 +41,7 @@ def callback():
         print("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
 
-    return 'OK'
+    return 'OK' 
 
 
 @handler.add(MessageEvent, message=TextMessage)
