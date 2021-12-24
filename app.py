@@ -17,8 +17,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('XJPszI2aN+tp8n1P/grVOJG0tY0mWjDJhbAv+YRy0rXJQXmkf+y618CV2JcMODkQOC1ui6srhvv5k8tgSf5XOLfbbRFoQfs2zJX895peTHa00V/Ho/dpPA5U91vP7FF+LGDKPOQEMVxKBiMaUdOYUwdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('a1866f830a1523298b975cef98c6eba1')
+line_bot_api = LineBotApi('5WX83giGN076LHf7u1a0Y0HMYXeNImNkqBBbETp7gTqcBloxJQqOhX5Hor5HC0YoT6WGcA4HPfp73OBXLWKPhfFv4RpdShcKhxd2d/xVeGXcsy/okP0O8YG3VmsH4iEJwAyJ6fjM5sN7/diYufinPQdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('0200fbf7254fad7b9f5a5689d0e391e7')
 sql_key = 'postgres://nxdzazwuksueek:12cfb8639158f0b99775912b528bd7212871c4b69c8fa3407b020e86c18ab5fb@ec2-3-209-38-221.compute-1.amazonaws.com:5432/d4q3a33v2hjd0u'
 
 with open('fortune.json', 'r') as file:
